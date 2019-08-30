@@ -1,0 +1,6 @@
+<%= simple_form_for @search, html: { class: "form-inline mt-4" },
+  defaults: { label_html: { class: "text-secondary d-none" }, input_html: { class: "ml-2" } } do |f| %>
+  <%= f.input :language, placeholder: "Programming language..." %>
+  <%= f.input :query, placeholder: "Search string..." %>
+  <%= f.submit "Search", class: "btn btn-primary ml-2", data: { disable_with: "Searching..." } %>
+<% end %>

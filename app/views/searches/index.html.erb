@@ -1,0 +1,45 @@
+<div class="container p-5">
+  <div class="row">
+    <div class="col">
+      <h1>GitHub Repository Search</h1>
+      <%= render "form" %>
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">CodeFund</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Activity</th>
+            <th scope="col">Stars</th>
+            <th scope="col">Watchers</th>
+            <th scope="col">Forks</th>
+            <th scope="col">Issues</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @results.each do |repository| %>
+            <tr>
+              <td scope="row">
+                <% if rand(10).zero? %>
+                  <button type="button" class="btn btn-success btn-xs"><strong>Sponsor</strong> this project for $50</button>
+                <% end %>
+              </td>
+              <td scope="row"><%= link_to repository.full_name, repository.url, target: "_blank" %></td>
+              <td scope="row"><%= repository.description %></td>
+              <td scope="row"><%= distance_of_time_in_words_to_now Date.parse(repository.pushed_at) %> ago</td>
+              <td scope="row"><%= repository.stargazers_count %></td>
+              <td scope="row"><%= repository.watchers_count %></td>
+              <td scope="row"><%= repository.forks_count %></td>
+              <td scope="row"><%= repository.open_issues_count %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
